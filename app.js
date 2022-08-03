@@ -39,4 +39,16 @@ app.put('/usuarios/:id', (pedido, respuesta) => {
     respuesta.send(usuario)
 })
 
+//app.delete('/usuarios:/id', (req, res));
+app.delete('/usuarios/:id', (request, response) => {
+    let id = request.params.id
+    let usuarioAEliminar = usuarios.filter(x => x.email == id).at(0)
+    if (usuarioAEliminar == null)
+        response.status(404).send("No se encuentra el usuario")
+
+    let indice = usuarios.indexOf(usuarioAEliminar)
+    usuarios.splice(indice, 1)
+    response.send("Se elimino el usuario")
+});
+
 app.listen(port)
