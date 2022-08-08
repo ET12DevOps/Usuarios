@@ -17,7 +17,7 @@ Crear el archivo tsconfig.json
 ```
 npx tsc --init
 ```
-`
+
 En el archivo **tsconfig.json**
 
 descomentar el campo **outdir** con el valor "./dist"
