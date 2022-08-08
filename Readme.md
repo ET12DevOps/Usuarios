@@ -31,3 +31,12 @@ En el archivo **package.json**
   }
 ```
 
+Compilar el proyecto
+```
+npm run build
+```
+
+Ejecutar el proyecto (tslint + nodemon)
+```
+npm run dev
+```
