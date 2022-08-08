@@ -1,25 +1,33 @@
-## Usuarios
-
-Crear proyecto
+Crear el archivo **package.json**
 ```
-npm init
+npm init --yes
 ```
 
-Instalar dependencias
+Instalar express
 ```
-npm install express --save
-npm install -g nodemon --save-dev
+npm i express
 ```
 
-Agregar en archivo **package.json** comando **nodemon**
+Instalar dependencias en modo dev
+```
+npm i -D nodemon concurrently typescript @types/node @types/express
+```
+
+Crear el archivo tsconfig.json
+```
+npx tsc --init
+```
+`
+En el archivo **tsconfig.json**
+
+descomentar el campo **outdir** con el valor "./dist"
+
+En el archivo **package.json**
 ```json
 "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "node app.js"
-  },
+    "build": "npx tsc",
+    "start": "node dist/app.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/app.js\""
+  }
 ```
 
-Instala dependecias del archivo **package.json**
-```
-npm install 
-```

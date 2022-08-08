@@ -1,14 +1,14 @@
 //importa dependencia de la biblioteca express
-const express = require('express')
+import express, { Express, Request, Response } from 'express'
 
 //crea la aplicacion 
-const app = express()
+const app: Express = express()
 
 //lee el body en formato json
 app.use(express.json())
 
 //define un puerto en que va a escuchar pedidos
-const port = 3000
+const port = process.env.PORT || 3000
 
 let usuarios = [
     {
@@ -32,33 +32,33 @@ let usuarios = [
 ]
 
 //endpoints
-app.get('/usuarios', (pedido, respuesta) => {
+app.get('/usuarios', (pedido: Request, respuesta: Response) => {
     respuesta.send(usuarios)
 })
 
-app.get('/usuarios/:id', (pedido, respuesta) => {
+app.get('/usuarios/:id', (pedido: Request, respuesta: Response) => {
     let id = pedido.params.id
     //console.log(id)
     respuesta.send(usuarios.filter(x => x.email == id))
 })
 
-app.post('/usuarios', (pedido, respuesta) => {
+app.post('/usuarios', (pedido: Request, respuesta: Response) => {
     usuarios.push(pedido.body)
     respuesta.send(pedido.body)
 })
 
-app.put('/usuarios/:id', (pedido, respuesta) => {
+app.put('/usuarios/:id', (pedido: Request, respuesta: Response) => {
     let id = pedido.params.id
     let usuario = usuarios.filter(x => x.email == id).at(0)
-    usuario.usuario = pedido.body.usuario
-    usuario.contrasenia = pedido.body.contrasenia
+    usuario!.usuario = pedido.body.usuario
+    usuario!.contrasenia = pedido.body.contrasenia
     respuesta.send(usuario)
 })
 
 //app.delete('/usuarios:/id', (req, res));
-app.delete('/usuarios/:id', (request, response) => {
+app.delete('/usuarios/:id', (request: Request, response: Response) => {
     let id = request.params.id
-    let usuarioAEliminar = usuarios.filter(x => x.email == id).at(0)
+    let usuarioAEliminar = usuarios.filter(x => x.email == id).at(0)!
     if (usuarioAEliminar == null)
         response.status(404).send("No se encuentra el usuario")
 
@@ -67,14 +67,14 @@ app.delete('/usuarios/:id', (request, response) => {
     response.send("Se elimino el usuario")
 });
 
-app.get('/usuarios/:email/roles', (request, response) => {
+app.get('/usuarios/:email/roles', (request: Request, response: Response) => {
     let email = request.params.email
     let usuario = usuarios.filter(x => x.email == email).at(0)
 
     if (usuario == null)
         response.status(404).send("No se encuentra el usuario")
 
-    response.send(usuario.roles)
+    response.send(usuario!.roles)
 })
 
 app.listen(port)
