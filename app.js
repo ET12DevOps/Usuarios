@@ -3,6 +3,8 @@ import express, { json } from 'express'
 //importa dependencia de la biblioteca morgan
 import morgan from 'morgan'
 
+import 'dotenv/config'
+
 //crea la aplicacion 
 const app = express()
 
@@ -12,7 +14,7 @@ app.use(json())
 app.use(morgan('dev'))
 
 //define un puerto en que va a escuchar pedidos
-const port = 3000
+const port = process.env.PORT
 
 let usuarios = [
     {
