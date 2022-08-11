@@ -24,14 +24,12 @@ Instala dependecias del archivo **package.json**
 npm install 
 ```
 
-## V2/refactor
+## v2/refactor
 
 - Se agregaron comentarios en los endpoints
 - Renombramiento de **req** y **res**
 
-## V3/actualizar-version-js
-
-### Instalar babel.js
+## v3/actualizar-version-js
 
 Instalar las siguientes dependencias
 ```
@@ -78,4 +76,38 @@ app.use(json())
 Para ejecutar el proyecto en modo **dev**
 ```
 npm run dev
+```
+
+## v4/instalar-complementos
+
+Instalar las siguientes dependencias (morgan y dotenv)
+```
+npm i -D morgan dotenv
+```
+### Configuracion morgan
+
+- En el archivo **app.js** agregar la referencia al paquete
+
+```js
+import express, { json } from 'express'
+import morgan from 'morgan'
+...
+app.use(json())
+app.use(morgan('dev'))
+```
+
+### Configuracion dotenv
+- Crear el archivo **.env** con el contenido
+```
+PORT=3000
+```
+
+- En el archivo **app.js** agregar la referencia al paquete
+
+```js
+import express, { json } from 'express'
+import morgan from 'morgan'
+import 'dotenv/config'
+...
+const port = process.env.PORT
 ```
