@@ -1,11 +1,11 @@
 //importa dependencia de la biblioteca express
-const express = require('express')
+import express, { json } from 'express'
 
 //crea la aplicacion 
 const app = express()
 
 //lee el body en formato json
-app.use(express.json())
+app.use(json())
 
 //define un puerto en que va a escuchar pedidos
 const port = 3000
