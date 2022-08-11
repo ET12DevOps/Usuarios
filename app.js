@@ -32,49 +32,58 @@ let usuarios = [
 ]
 
 //endpoints
-app.get('/usuarios', (pedido, respuesta) => {
-    respuesta.send(usuarios)
+app.get('/usuarios', (req, res) => {
+    res.send(usuarios)
 })
 
-app.get('/usuarios/:id', (pedido, respuesta) => {
-    let id = pedido.params.id
-    //console.log(id)
-    respuesta.send(usuarios.filter(x => x.email == id))
+app.get('/usuarios/:email', (req, res) => {
+    let email = pedido.params.email
+    //busco el usuario con el email
+    let usuario = usuarios.find(x => x.email == email)
+    res.send(usuario)
 })
 
-app.post('/usuarios', (pedido, respuesta) => {
+app.post('/usuarios', (req, res) => {
     usuarios.push(pedido.body)
-    respuesta.send(pedido.body)
+    res.send(pedido.body)
 })
 
-app.put('/usuarios/:id', (pedido, respuesta) => {
-    let id = pedido.params.id
-    let usuario = usuarios.filter(x => x.email == id).at(0)
+app.put('/usuarios/:email', (req, res) => {
+    let email = pedido.params.email
+    //busco el usuario con el email
+    let usuario = usuarios.find(x => x.email == email)
+    //actualizo los campos del usuario
     usuario.usuario = pedido.body.usuario
     usuario.contrasenia = pedido.body.contrasenia
-    respuesta.send(usuario)
+    res.send(usuario)
 })
 
-//app.delete('/usuarios:/id', (req, res));
-app.delete('/usuarios/:id', (request, response) => {
-    let id = request.params.id
-    let usuarioAEliminar = usuarios.filter(x => x.email == id).at(0)
-    if (usuarioAEliminar == null)
+app.delete('/usuarios/:email', (req, res) => {
+    let email = request.params.email
+    //busco el usuario con el email
+    let usuario = usuarios.find(x => x.email == email)
+    //valido si un usuario existe con el email  
+    if (usuario == null) {
         response.status(404).send("No se encuentra el usuario")
+        return
+    }
 
-    let indice = usuarios.indexOf(usuarioAEliminar)
+    let indice = usuarios.indexOf(usuario)
     usuarios.splice(indice, 1)
-    response.send("Se elimino el usuario")
+    res.send("Se elimino el usuario")
 });
 
-app.get('/usuarios/:email/roles', (request, response) => {
+app.get('/usuarios/:email/roles', (req, res) => {
     let email = request.params.email
-    let usuario = usuarios.filter(x => x.email == email).at(0)
+    //busco el usuario con el email
+    let usuario = usuarios.find(x => x.email == email)
+    //valido si un usuario existe con el email
+    if (usuario == null) {
+        res.status(404).send("No se encuentra el usuario")
+        return
+    }
 
-    if (usuario == null)
-        response.status(404).send("No se encuentra el usuario")
-
-    response.send(usuario.roles)
+    res.send(usuario.roles)
 })
 
 app.listen(port)
