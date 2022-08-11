@@ -111,3 +111,8 @@ import 'dotenv/config'
 ...
 const port = process.env.PORT
 ```
+
+## v5/refactor-routes
+
+- Mover los endpoints del archivo **app.js** al archivo **usuario.routes.js** dentro del directorio **routes**
+- Analizar los cambios realizados en el archivo **app.js** y **usuario.routes.js**
