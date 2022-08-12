@@ -29,29 +29,29 @@ router.get('/usuarios', (req, res) => {
 })
 
 router.get('/usuarios/:email', (req, res) => {
-    let email = pedido.params.email
+    let email = req.params.email
     //busco el usuario con el email
     let usuario = usuarios.find(x => x.email == email)
     res.send(usuario)
 })
 
 router.post('/usuarios', (req, res) => {
-    usuarios.push(pedido.body)
-    res.send(pedido.body)
+    usuarios.push(req.body)
+    res.send(req.body)
 })
 
 router.put('/usuarios/:email', (req, res) => {
-    let email = pedido.params.email
+    let email = req.params.email
     //busco el usuario con el email
     let usuario = usuarios.find(x => x.email == email)
     //actualizo los campos del usuario
-    usuario.usuario = pedido.body.usuario
-    usuario.contrasenia = pedido.body.contrasenia
+    usuario.usuario = req.body.usuario
+    usuario.contrasenia = req.body.contrasenia
     res.send(usuario)
 })
 
 router.delete('/usuarios/:email', (req, res) => {
-    let email = request.params.email
+    let email = req.params.email
     //busco el usuario con el email
     let usuario = usuarios.find(x => x.email == email)
     //valido si un usuario existe con el email  
@@ -66,7 +66,7 @@ router.delete('/usuarios/:email', (req, res) => {
 });
 
 router.get('/usuarios/:email/roles', (req, res) => {
-    let email = request.params.email
+    let email = req.params.email
     //busco el usuario con el email
     let usuario = usuarios.find(x => x.email == email)
     //valido si un usuario existe con el email
