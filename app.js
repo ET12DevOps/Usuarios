@@ -7,6 +7,8 @@ import 'dotenv/config'
 //importar el archivo usuarioRoutes del archivo usuario.routes.js
 import usuarioRoutes from './routes/usuario.routes'
 
+import database from './database'
+
 //crea la aplicacion 
 const app = express()
 
@@ -21,5 +23,5 @@ app.use(morgan('dev'))
 app.use(usuarioRoutes)
 
 app.listen(port, () => {
-    console.log(`Escuchando pedidos en PORT: ${port}`)
+    console.log(`Escuchando request en ${port}`)
 })

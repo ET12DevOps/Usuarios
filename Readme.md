@@ -116,3 +116,11 @@ const port = process.env.PORT
 
 - Mover los endpoints del archivo **app.js** al archivo **usuario.routes.js** dentro del directorio **routes**
 - Analizar los cambios realizados en el archivo **app.js** y **usuario.routes.js**
+
+## v6/mongodb
+
+### Configuracion mongoose
+Ejecutar en la terminal el siguiente comando
+```
+npm i mongoose
+```
