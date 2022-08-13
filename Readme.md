@@ -1,25 +1,9 @@
 ## Usuarios
 
-Crear proyecto
-```
-npm init
-```
+## Version 2
 
-Instalar dependencias
-```
-npm install express --save
-npm install -g nodemon --save-dev
-```
+- Se agregaron comentarios en **app.js**
 
-Agregar en archivo **package.json** comando **nodemon**
-```json
-"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "node app.js"
-  },
-```
+- Renombramiento de **req** y **res**
 
-Instala dependecias del archivo **package.json**
-```
-npm install 
-```
+- Se reemplazo el método **filter** por el método **find** en endpoints
