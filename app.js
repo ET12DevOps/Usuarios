@@ -8,13 +8,10 @@ import 'dotenv/config'
 import usuarioRoutes from './routes/usuario.routes'
 
 import database from './database'
-
 //crea la aplicacion 
 const app = express()
-
 //define un puerto en que va a escuchar pedidos
 const port = process.env.PORT
-
 //lee el body en formato json
 app.use(json())
 //imprime las acciones hacia cada endopoint en la terminal
