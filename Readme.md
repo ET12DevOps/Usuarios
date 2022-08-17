@@ -21,7 +21,7 @@ Agregar en archivo **package.json** comando **nodemon**
   },
 ```
 
-Instala dependecias del archivo **package.json**
+Para ejecutar el proyecto se debe instalar las dependecias del archivo **package.json** con el siguiente comando
 ```
 npm install 
 ```
