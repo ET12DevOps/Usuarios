@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import 'dotenv/config'
 //importar el archivo usuarioRoutes del archivo usuario.routes.js
 import usuarioRoutes from './routes/usuario.routes'
+const cors = require('cors');
 
 import database from './database'
 
@@ -17,6 +18,8 @@ const port = process.env.PORT
 
 //lee el body en formato json
 app.use(json())
+//habilita el uso de CORS
+app.use(cors())
 //imprime las acciones hacia cada endopoint en la terminal
 app.use(morgan('dev'))
 //endpoints

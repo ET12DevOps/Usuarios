@@ -1,12 +1,21 @@
 import Usuario from '../models/usuario.model'
 
-export const leerUsuarios = async (req, res) => {
-    try {
-        const usuario = await Usuario.find()
-        res.send(usuario)
-    } catch (err) {
-        res.status(500).send(err)
+var usuarios = [
+    {
+        email: 'mail@mail.com',
+        usuario: 'mail',
+        contraseña: '1234'
     }
+]
+
+export const leerUsuarios = async (req, res) => {
+    res.send(usuarios)
+    // try {
+    //     const usuario = await Usuario.find()
+    //     res.send(usuario)
+    // } catch (err) {
+    //     res.status(500).send(err)
+    // }
 }
 
 export const leerUsuario = async (req, res) => {
