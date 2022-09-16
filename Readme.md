@@ -1,9 +1,10 @@
 # Usuarios
 
-## Version 8
+## Version 9
 
-#### Refactor
+#### Docker
 
-- Se agregaron endpoints para los roles
+- Se agregaron los archivo **Dockerfile** y **.dockerignore**
 
-- Se codigo fuente del proyecto al directorio **src**
+Ver documentacion oficial [aqui](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
+
