@@ -44,7 +44,7 @@ export const actualizarUsuario = async (req, res) => {
     }
 }
 
-export const borrarUsuario = async (req, res) => {
+export const eliminarUsuario = async (req, res) => {
     try {
         let emailUsuario = req.params.email
         //busco el usuario con el email y lo elimino
@@ -61,6 +61,50 @@ export const leerRoles = async (req, res) => {
         // //busco el usuario con el email
         const usuario = await Usuario.findOne({ email: emailUsuario })
         res.send(usuario.roles)
+    } catch (err) {
+        res.status(500).send(err)
+    }
+}
+
+export const crearRol = async (req, res) => {
+    try {
+        let emailUsuario = req.params.email
+        const usuario = await Usuario.findOne({ email: emailUsuario })
+        let rol = req.body
+        usuario.roles.push(rol)
+        await Usuario.findOneAndUpdate({ email: emailUsuario }, usuario)
+        const usuarioResponse = await Usuario.findOne({ email: emailUsuario })
+        res.send(usuarioResponse)
+    } catch (err) {
+        res.status(500).send(err)
+    }
+}
+
+export const actualizarRol = async (req, res) => {
+    try {
+        let emailUsuario = req.params.email
+        let nombreRol = req.params.rol
+        let cambiosRol = req.body
+        const usuario = await Usuario.findOne({ email: emailUsuario })
+        let rol = usuario.roles.find(x => x.nombre == nombreRol)
+        rol.descripcion = cambiosRol.descripcion
+        await Usuario.findOneAndUpdate({ email: emailUsuario }, usuario)
+        const usuarioResponse = await Usuario.findOne({ email: emailUsuario })
+        res.send(usuarioResponse)
+    } catch (err) {
+        res.status(500).send(err)
+    }
+}
+
+export const eliminarRol = async (req, res) => {
+    try {
+        let emailUsuario = req.params.email
+        let nombreRol = req.params.rol
+        const usuario = await Usuario.findOne({ email: emailUsuario })
+        usuarios.roles = usuario.roles.filter(x => x.nombre != nombreRol)
+        await Usuario.findOneAndUpdate({ email: emailUsuario }, usuario)
+        const usuarioResponse = await Usuario.findOne({ email: emailUsuario })
+        res.status(204).send()
     } catch (err) {
         res.status(500).send(err)
     }

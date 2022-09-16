@@ -23,7 +23,8 @@ const usuarioSchema = new mongoose.Schema({
     }
 },
     {
-        timestamps: true,
+        collection: 'usuarios',
+        timestamps: false,
         versionKey: false
     }
 )
