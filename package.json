@@ -2,11 +2,12 @@
   "name": "usuarios",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon ./ --exec babel-node"
+    "build": "npm run clean && babel ./src --out-dir dist",
+    "start": "node ./dist/app.js",
+    "clean": "rm -rf ./dist && mkdir dist",
+    "dev": "nodemon --exec babel-node ./src/app.js"
   },
   "author": "jonathan velazquez",
   "license": "ISC",
